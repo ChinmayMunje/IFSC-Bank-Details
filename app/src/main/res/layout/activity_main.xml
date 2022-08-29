@@ -7,13 +7,29 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/circle_back" />
+
+    <ImageView
+        android:id="@+id/idIVBank"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:src="@drawable/bank" />
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/idTILIFSC"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/idIVBank"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:hint="Enter IFSC Code"
@@ -36,10 +52,12 @@
 
     <Button
         android:id="@+id/idBtnGetIFSC"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/idTILIFSC"
-        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_back"
         android:text="Get Bank Details"
         android:textAllCaps="false" />
 
@@ -50,16 +68,343 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/idTVIFSC"
+    <!--    <TextView-->
+    <!--        android:id="@+id/idTVHeading"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:gravity="center"-->
+    <!--        android:padding="5dp"-->
+    <!--        android:text="Welcome to GFG,\n Get Bank details from IFSC Code"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textColor="@color/purple_200"-->
+    <!--        android:textSize="20sp"-->
+    <!--        android:textStyle="bold" />-->
+
+    <RelativeLayout
+        android:id="@+id/idRLIFSCDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/idBtnGetIFSC"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:textAlignment="center"
-        android:textColor="@color/black" />
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/idTVBankName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Bank Name"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/purple_200"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:id="@+id/idLLOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVBankName"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="IFSC Code"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idTVIFSCCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="IFSC"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="MICR Code"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idTVMICRCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="MICR"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/idLLOne"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/idLLTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idLLOne"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="State"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idTVState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="State"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="District"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idTVDistrict"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="District"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/idLLTwo"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/idLLThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idLLTwo"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="Branch"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idTVBranch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="Branch"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="Contact"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idTVContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:padding="5dp"
+                    android:text="COntact"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/idLLThree"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/idTVAddressHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idLLThree"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Address"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_200"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/idTVAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVAddressHead"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+<!--        <Button-->
+<!--            android:id="@+id/idBtnShare"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/idTVAddress"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:background="@drawable/button_back"-->
+<!--            android:text="Share"-->
+<!--            android:textAllCaps="false" />-->
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

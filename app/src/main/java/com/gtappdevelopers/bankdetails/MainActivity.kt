@@ -2,10 +2,7 @@ package com.gtappdevelopers.bankdetails
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -16,7 +13,15 @@ import com.google.android.material.textfield.TextInputEditText
 class MainActivity : AppCompatActivity() {
     lateinit var ifscEdt: TextInputEditText
     lateinit var ifscBtn: Button
-    lateinit var ifscTV: TextView
+    lateinit var ifscCodeTV: TextView
+    lateinit var micrCodeTV: TextView
+    lateinit var stateTV: TextView
+    lateinit var distTV: TextView
+    lateinit var ifscRL: RelativeLayout
+    lateinit var bankNameTV: TextView
+    lateinit var branchTV: TextView
+    lateinit var contactTV: TextView
+    lateinit var addressTV: TextView
     lateinit var loadingPB: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +29,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ifscEdt = findViewById(R.id.idEdtIFSCCode)
         ifscBtn = findViewById(R.id.idBtnGetIFSC)
-        ifscTV = findViewById(R.id.idTVIFSC)
+        ifscRL = findViewById(R.id.idRLIFSCDetails)
+        ifscCodeTV = findViewById(R.id.idTVIFSCCode)
+        micrCodeTV = findViewById(R.id.idTVMICRCode)
+        stateTV = findViewById(R.id.idTVState)
+        bankNameTV = findViewById(R.id.idTVBankName)
+        distTV = findViewById(R.id.idTVDistrict)
+        branchTV = findViewById(R.id.idTVBranch)
+        contactTV = findViewById(R.id.idTVContact)
+        addressTV = findViewById(R.id.idTVAddress)
         loadingPB = findViewById(R.id.idPBLoading)
 
         ifscBtn.setOnClickListener {
@@ -45,15 +58,21 @@ class MainActivity : AppCompatActivity() {
         var apiURL = "https://ifsc.razorpay.com/" + ifscCode
         val request = JsonObjectRequest(Request.Method.GET, apiURL, null, { response ->
             loadingPB.visibility = View.GONE
+            ifscRL.visibility = View.VISIBLE
             val branch = response.getString("BRANCH")
             val address = response.getString("ADDRESS")
             val micr = response.getString("MICR")
             val swift = response.getString("SWIFT")
             val bankCode = response.getString("BANKCODE")
 
-            val str =
-                "Bank Branch : " + branch + "\n" + "Address : " + address + "\n" + "MICR : " + micr + "\n" + "Swift : " + swift + "\n" + "Bank Code : " + bankCode
-            ifscTV.text = str
+            ifscCodeTV.text = ifscCode
+            bankNameTV.text = response.getString("BANK")
+            micrCodeTV.text = micr
+            stateTV.text = response.getString("STATE")
+            distTV.text = response.getString("DISTRICT")
+            branchTV.text = branch
+            contactTV.text = response.getString("CONTACT")
+            addressTV.text = address
 
         }, { error ->
             loadingPB.visibility = View.GONE
